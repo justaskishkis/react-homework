@@ -11,7 +11,8 @@ class Button extends React.Component<IButton> {
 			<button
 				className={'jk-button'}
 				onClick={this.handleText}>
-				{this.props.text}
+				{/*{this.props.text}*/}
+				{this.props.children}
 			</button>
 		);
 	}

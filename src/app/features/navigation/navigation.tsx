@@ -9,7 +9,9 @@ function Navigation() {
 
 	return (
 		<div>
-			<Button text='Click me' onClick={handleClick}/>
+			<Button text='Click me' onClick={handleClick}>
+				Click me
+			</Button>
 			<NavLink exact to='/' activeClassName='is-active'>
 				Home
 			</NavLink>
