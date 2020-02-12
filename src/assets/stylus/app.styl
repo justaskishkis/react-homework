@@ -1,2 +1,17 @@
-body
-	background-color blue
+// VAR
+mixinLibraryPath = 'stylus-mixin-library/'
+themePath = 'theme/'
+cssResetPath = 'css-reset/'
+gridPath = 'grid/'
+vendorPath = 'vendor/'
+imagesPath = 'images/'
+
+// REQUIRE
+@require mixinLibraryPath + '_index'
+@require themePath + '_index'
+@require cssResetPath + '_index'
+@require gridPath + '_index'
+// @require vendorPath + '_index'
+
+// TODO: remove when refactor webpack build as stylus loader will be available, as for now CRA support only SCSS
+@import '../../app/**/*'

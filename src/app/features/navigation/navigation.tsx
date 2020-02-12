@@ -1,16 +1,24 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { INavigation } from './navigation.models';
+import Button from '../../../ui-components/button/button';
 
-const Navigation: React.SFC<INavigation> = ({}) => (
-	<div>
-		<NavLink exact to='/' activeClassName='is-active'>
-			Home
-		</NavLink>
-		<NavLink to='/heroes' activeClassName='is-active'>
-			Heroes
-		</NavLink>
-	</div>
-);
+function Navigation() {
+	const handleClick = function() {
+		console.log('clicked');
+	};
+
+	return (
+		<div>
+			<Button text='Click me' onClick={handleClick}/>
+			<NavLink exact to='/' activeClassName='is-active'>
+				Home
+			</NavLink>
+			<NavLink to='/heroes' activeClassName='is-active'>
+				Heroes
+			</NavLink>
+		</div>
+	);
+}
 
 export default Navigation;
+

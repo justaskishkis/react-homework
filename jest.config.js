@@ -8,6 +8,6 @@ module.exports = {
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 	setupFilesAfterEnv: ['<rootDir>/src/setup-tests.ts'],
 	moduleNameMapper: {
-		'^.+\\.(css|scss)$': 'identity-obj-proxy'
+		'^.+\\.(css)$': 'identity-obj-proxy'
 	}
 }
