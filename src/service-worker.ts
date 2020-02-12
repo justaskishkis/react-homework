@@ -40,7 +40,7 @@ function registerValidSW(swUrl: string, config: any) {
 							if (navigator.serviceWorker.controller) {
 								console.log('New content is available; please refresh.');
 								if (config.onUpdate) {
-									config.onUpdate(registration)
+									config.onUpdate(registration);
 								}
 							} else {
 								console.log('Content is cached for offline use.');
