@@ -1,4 +1,14 @@
+export enum IButtonMod {
+	primary = 'primary',
+}
+
+export enum IButtonType {
+	submit = 'submit',
+}
+
 export interface IButton {
 	text: string;
-	onClick: () => void;
+	type: IButtonType;
+	mod: IButtonMod;
+	onClick?: () => void;
 }

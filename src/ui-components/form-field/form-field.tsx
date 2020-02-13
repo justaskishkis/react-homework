@@ -8,7 +8,9 @@ class FormField extends React.Component<IFormField> {
 		return (
 			<div className='jk-form__field'>
 				<div className={'jk-form__label ' + (this.props.required ? 'jk-form__label--required' : '')}>
-					{ this.props.label }
+					<label htmlFor={this.props.labelFor}>
+						{this.props.label}
+					</label>
 				</div>
 				<div className={'jk-form__element'}>
 					{this.props.children}
