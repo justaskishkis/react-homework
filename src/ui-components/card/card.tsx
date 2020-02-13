@@ -1,5 +1,4 @@
 import * as React from 'react';
-// TODO: implement story book for all ui components
 // import styles from './card.styl';
 
 class Card extends React.Component {

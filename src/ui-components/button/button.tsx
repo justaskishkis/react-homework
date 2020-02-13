@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IButton } from './button.models';
-// TODO: implement story book for all ui components
 // import styles from './button.styl';
 
 class Button extends React.Component<IButton> {
@@ -12,6 +11,7 @@ class Button extends React.Component<IButton> {
 	render() {
 		return (
 			<button
+				disabled={!!this.props.disabled}
 				type={this.props.type}
 				className={'jk-button jk-button--' + this.props.mod}
 				onClick={this.handleClick}>

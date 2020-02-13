@@ -1,18 +1,24 @@
-// TODO: move models or maybe find them ??
-export interface ITask1State {
-	formControls: {
-		inputField: {
-			id: string;
-			value: string;
-			label: string;
-			placeholder: string;
-			valid: boolean;
-			touched: boolean;
-			validationRules: {
-				minLength: number;
-				maxLength: number;
-				isRequired: boolean;
-			};
-		};
-	};
+export interface ITask1FormState {
+	formControls: ITask1FormControls;
+}
+
+export interface ITask1FormControls {
+	inputField: ITask1InputField;
+}
+
+export interface ITask1InputField {
+	name: string;
+	id: string;
+	value: string;
+	label: string;
+	placeholder: string;
+	valid: boolean;
+	touched: boolean;
+	validationRules: ITask1ValidationRules;
+}
+
+export interface ITask1ValidationRules {
+	minLength: number;
+	maxLength: number;
+	isRequired: boolean;
 }
