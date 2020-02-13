@@ -1,23 +1,18 @@
 import * as React from 'react';
 import { IFormControl } from './form-control.models';
-import { IButton } from '../button/button.models';
 // TODO: implement story book for all ui components
 // import styles from './form-control.styl';
 
 class FormControl extends React.Component<IFormControl> {
-	state: { fieldValue: string };
-
 	constructor(props: IFormControl) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
-		this.state = {
-			fieldValue: ''
-		};
 	}
 
 	render() {
 		return (
 			<input
+				placeholder={this.props.placeHolder}
 				onChange={this.handleChange}
 				className={'jk-form__control'}
 				type={this.props.type}
@@ -26,9 +21,8 @@ class FormControl extends React.Component<IFormControl> {
 		);
 	}
 
-	private handleChange(event: any) {
-		this.state.fieldValue = event.target.value;
-		this.props.onChange(this.state.fieldValue);
+	private handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+		this.props.onChange(event.target.value);
 	}
 }
 
