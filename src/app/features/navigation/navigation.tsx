@@ -1,25 +1,32 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import Button from '../../../ui-components/button/button';
+import { navigationItems } from './navigation.constants';
+import { appRoutesPaths } from '../../routing/app-routes.constants';
+// import styles from './navigation.styl';
 
-function Navigation() {
-	const handleClick = function() {
-		console.log('clicked');
-	};
-
-	return (
-		<div>
-			<Button text='Click me' onClick={handleClick}>
-				Click me
-			</Button>
-			<NavLink exact to='/' activeClassName='is-active'>
-				Home
-			</NavLink>
-			<NavLink to='/heroes' activeClassName='is-active'>
-				Heroes
-			</NavLink>
-		</div>
-	);
+class Navigation extends React.Component<{}> {
+	render() {
+		return (
+			<div className={'hwk-navigation'}>
+				<NavLink
+					exact
+					to={appRoutesPaths.home}
+					className={'hwk-navigation__item'}
+					activeClassName='hwk-navigation__item--active'>
+					Home
+				</NavLink>
+				{navigationItems.map(item => (
+					<NavLink
+						key={item.url}
+						to={item.url}
+						className={'hwk-navigation__item'}
+						activeClassName='hwk-navigation__item--active'>
+						{item.text}
+					</NavLink>
+				))}
+			</div>
+		);
+	}
 }
 
 export default Navigation;

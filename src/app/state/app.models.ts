@@ -12,3 +12,8 @@ export interface IApp {
 	store: Store<IAppState>;
 	history: History;
 }
+
+export interface INavigationItem {
+	text: string;
+	url: string;
+}
