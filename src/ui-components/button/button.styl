@@ -1,22 +1,37 @@
-import * as React from 'react';
-import { IButton } from './button.models';
+@require 'base-config'
 
-class Button extends React.Component<IButton> {
-	constructor(props: IButton) {
-		super(props);
-	}
+.{cPre}button
+	margin_(0 0 0 0)
+	outline none
+	cursor pointer
+	border none
+	-webkit-tap-highlight-color transparent
+	box-sizing border-box
+	position relative
+	z-index zLow1
+	display inline-block
+	white-space nowrap
+	text-decoration none
+	vertical-align baseline
+	text-align center
+	background-color transparent
+	border-radius bdrsPrimary
+	height hButton
+	line-height hButton
 
-	render() {
-		return (
-			<button onClick={this.handleText}>
-				{this.props.text}
-			</button>
-		);
-	}
+	&[disabled]
+		opacity .5
+		cursor default
 
-	private handleText() {
-		this.props.onClick();
-	}
-}
+	&--primary
+		padding_(0 spaceRightPrimary 0 spaceLeftPrimary)
+		background-color bgcButtonPrimary
+		border-radius bdrsPrimary
+		border 1px solid cPrimary
+		color cInverted
 
-export default Button;
+		&:hover
+			background-color bgcButtonPrimaryHover
+
+	&--width-full
+		width 100%

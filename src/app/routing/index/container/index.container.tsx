@@ -5,7 +5,7 @@ class IndexPage extends React.Component {
 		return (
 			<div className={'hwk-grid-container hwk-grid-container--horizontal-spaces-primary'}>
 				<div className={'hwk-grid-row'}>
-					<div className={'hwk-header__brand hwk-grid-col hwk-grid-col--12'}>
+					<div className={'hwk-grid-col hwk-grid-col--12'}>
 						Readme text here
 					</div>
 				</div>
