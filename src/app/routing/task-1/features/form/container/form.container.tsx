@@ -8,54 +8,40 @@ import FormActions from '../../../../../../ui-components/form-actions/form-actio
 import { ITask1FormControls, ITask1InputField, ITask1FormState } from '../../../state/task-1.models';
 import { validate } from '../../../../../../lib/validators/validators';
 import { ITask1Form } from '../state/form.models';
+import { task1FormControls } from '../state/form.constants';
 
 class Task1Form extends React.Component<ITask1Form> {
 	state: ITask1FormState;
 
 	constructor(props: ITask1Form) {
 		super(props);
-		this.state = {
-			formControls: {
-				inputField: {
-					name: 'inputField',
-					id: 'task1Field',
-					value: '',
-					label: 'Field for value',
-					placeholder: 'Enter value from 1 to 10 symbols',
-					valid: false,
-					touched: false,
-					validationRules: {
-						minLength: 1,
-						maxLength: 10,
-						isRequired: true
-					}
-				}
-			}
-		};
+		this.state = { formControls: task1FormControls, };
 		this.submit = this.submit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	render() {
+		const { disabled } = this.props;
+		const { label, id, validationRules, placeholder, value, name, touched, valid } = this.state.formControls.inputField;
 		return (
 			<form onSubmit={this.submit}>
 				<FormField
-					label={this.state.formControls.inputField.label}
-					labelFor={this.state.formControls.inputField.id}
-					required={this.state.formControls.inputField.validationRules.isRequired}>
+					label={label}
+					labelFor={id}
+					required={validationRules.isRequired}>
 					<FormControl
-						placeHolder={this.state.formControls.inputField.placeholder}
+						placeHolder={placeholder}
 						onChange={this.handleChange}
-						value={this.state.formControls.inputField.value}
-						type={IFormControlType.TEXT}
-						id={this.state.formControls.inputField.id}
-						name={this.state.formControls.inputField.name}
-						touched={this.state.formControls.inputField.touched}
-						valid={this.state.formControls.inputField.valid}/>
+						value={value}
+						type={IFormControlType.NUMBER}
+						id={id}
+						name={name}
+						touched={touched}
+						valid={valid}/>
 				</FormField>
 				<FormActions>
 					<Button
-						disabled={!this.state.formControls.inputField.valid || this.props.disabled}
+						disabled={!valid || disabled}
 						type={IButtonType.SUBMIT}
 						text='Count'
 						mod={IButtonMod.PRIMARY}/>
@@ -69,10 +55,8 @@ class Task1Form extends React.Component<ITask1Form> {
 		this.props.submitted(this.state.formControls.inputField.value);
 	}
 
-	// tslint:disable-next-line:no-any
 	private handleChange(formControl: IFormControl) {
-		// tslint:disable-next-line:no-any
-		const value: any = formControl.value;
+		const value: string = formControl.value;
 
 		const updatedControls: ITask1FormControls = {
 			...this.state.formControls

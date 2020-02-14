@@ -1,6 +1,6 @@
 import { ITask1ValidationRules } from '../../app/routing/task-1/state/task-1.models';
 
-export const validate = (value: string, rules: ITask1ValidationRules) => {
+export const validate = (value: any, rules: ITask1ValidationRules) => {
 	let isValid = true;
 
 	// tslint:disable-next-line

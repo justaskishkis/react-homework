@@ -5,6 +5,7 @@ import { IAppState, ILoading } from '../../../state/app.models';
 import { connect } from 'react-redux';
 import { IAllTask1Props } from '../state/task-1.models';
 import { getPerson } from '../features/person/state/person.actions';
+import Loading from '../../../../ui-components/loading/loading';
 
 class Task1Page extends React.Component<IAllTask1Props> {
 	constructor(props: IAllTask1Props) {
@@ -33,19 +34,19 @@ class Task1Page extends React.Component<IAllTask1Props> {
 						<h2>
 							Result:
 						</h2>
-						{loading && (
-							<div>
-								Loading..
-							</div>
-						)}
-						{this.renderData()}
+						<div className='hwk-task-1__result'>
+							{loading && (
+								<Loading />
+							)}
+							{this.renderData(loading)}
+						</div>
 					</div>
 				</div>
 			</div>
 		);
 	}
 
-	private renderData() {
+	private renderData(loading: boolean) {
 		const {
 			facilityData, exposureData
 		} = this.props;
@@ -54,11 +55,7 @@ class Task1Page extends React.Component<IAllTask1Props> {
 		const result = (facility2 && exposure) ? (facility2 * exposure) : undefined;
 		return (
 			<div>
-				{result && (
-					<div>
-						{result}
-					</div>
-				)}
+				{!loading ? result : undefined}
 			</div>
 		);
 	}
