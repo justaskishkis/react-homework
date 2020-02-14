@@ -14,7 +14,7 @@ class Task1Page extends React.Component {
 					</div>
 					<div className={'hwk-grid-col hwk-grid-col--6'}>
 						<h2>
-							Rezultatas:
+							Result:
 						</h2>
 					</div>
 				</div>
