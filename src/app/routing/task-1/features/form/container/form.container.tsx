@@ -47,7 +47,7 @@ class Task1Form extends React.Component<ITask1Form> {
 						placeHolder={this.state.formControls.inputField.placeholder}
 						onChange={this.handleChange}
 						value={this.state.formControls.inputField.value}
-						type={IFormControlType.text}
+						type={IFormControlType.TEXT}
 						id={this.state.formControls.inputField.id}
 						name={this.state.formControls.inputField.name}
 						touched={this.state.formControls.inputField.touched}
@@ -56,9 +56,9 @@ class Task1Form extends React.Component<ITask1Form> {
 				<FormActions>
 					<Button
 						disabled={!this.state.formControls.inputField.valid || this.props.disabled}
-						type={IButtonType.submit}
+						type={IButtonType.SUBMIT}
 						text='Count'
-						mod={IButtonMod.primary}/>
+						mod={IButtonMod.PRIMARY}/>
 				</FormActions>
 			</form>
 		);

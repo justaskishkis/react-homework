@@ -1,11 +1,8 @@
-// tslint:disable-next-line:no-any
-export async function callApi(method: string, url: string, path: string, data?: any) {
-	const res = await fetch(`${url}/api${path}`, {
-		method,
-		headers: {
-			Accept: 'application/json'
-		},
-		body: JSON.stringify(data)
+import { IApiRequestOptions } from './api.models';
+
+export async function get<T>(url: string, options?: IApiRequestOptions): Promise<T> {
+	const res = await fetch(url, {
+		method: 'get',
 	});
 	return res.json();
 }

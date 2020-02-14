@@ -6,8 +6,4 @@ export const navigationItems: INavigationItem[] = [
 		text: 'Task 1',
 		url: appRoutesPaths.task1
 	},
-	{
-		text: 'Task 2',
-		url: appRoutesPaths.task2
-	}
 ];

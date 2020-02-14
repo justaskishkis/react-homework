@@ -12,5 +12,5 @@ export interface IFormControl {
 }
 
 export enum IFormControlType {
-	text = 'text',
+	TEXT = 'text',
 }

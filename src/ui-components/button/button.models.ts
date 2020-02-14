@@ -1,9 +1,9 @@
 export enum IButtonMod {
-	primary = 'primary',
+	PRIMARY = 'primary',
 }
 
 export enum IButtonType {
-	submit = 'submit',
+	SUBMIT = 'submit',
 }
 
 export interface IButton {
