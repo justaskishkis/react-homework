@@ -13,6 +13,6 @@ export enum IPersonActionTypes {
 	PERSON_ERROR = '[Person Sagas] PERSON ERROR',
 }
 
-export interface IPersonState extends IApiResponseState{
+export interface IPersonState extends IApiResponseState {
 	readonly data?: IPersonResponse;
 }
