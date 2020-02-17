@@ -8,7 +8,6 @@ import {
 	DropResult,
 	DroppableStateSnapshot, DraggableProvided, DraggableStateSnapshot
 } from 'react-beautiful-dnd';
-import { Flex } from 'grid-styled';
 
 interface IItem {
 	id: string;
@@ -149,8 +148,8 @@ export default class App extends React.Component<any, IAppState> {
 	public render() {
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
-				<Flex justifyContent={'space-between'}>
-					<Flex flexDirection='column'>
+				<div>
+					<div>
 						<Droppable droppableId='droppable'>
 							{(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
 								<div
@@ -181,7 +180,7 @@ export default class App extends React.Component<any, IAppState> {
 								</div>
 							)}
 						</Droppable>
-					</Flex>
+					</div>
 					<Droppable droppableId='droppable2'>
 						{(providedDroppable2: DroppableProvided, snapshotDroppable2: DroppableStateSnapshot) => (
 							<div
@@ -212,7 +211,7 @@ export default class App extends React.Component<any, IAppState> {
 							</div>
 						)}
 					</Droppable>
-				</Flex>
+				</div>
 			</DragDropContext>
 		);
 	}
