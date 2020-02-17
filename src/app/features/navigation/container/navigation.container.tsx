@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { navigationItems } from './navigation.constants';
-import { appRoutesPaths } from '../../routing/app-routes.constants';
+import { navigationItems } from '../state/navigation.constants';
+import { appRoutesPaths } from '../../../routing/app-routes.constants';
 // import styles from './navigation.styl';
 
 class Navigation extends React.Component<{}> {
