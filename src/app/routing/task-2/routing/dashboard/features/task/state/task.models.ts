@@ -1,5 +1,6 @@
-export interface ITask {
-	id: string;
-	title: string;
-	description: string;
+import { ITaskId } from '../../../../task/state/task.models';
+
+export interface IAllTaskProps {
+	taskId: ITaskId;
+	index: number;
 }

@@ -1,5 +1,7 @@
 export interface ITask {
-	id: string;
+	id: ITaskId;
 	title: string;
-	content: string;
+	description: string;
 }
+
+export type ITaskId = string;

@@ -1,0 +1,12 @@
+@require 'base-config'
+
+.{pre}task
+	padding_(spaceTopPrimary spaceRightPrimary spaceBottomPrimary spaceLeftPrimary)
+	background-color grey
+	margin-top spaceTopPrimary
+
+	&:first-child
+		margin-top 0
+
+	&--dragging
+		background-color lightgreen

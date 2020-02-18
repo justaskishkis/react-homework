@@ -1,190 +1,108 @@
 import * as React from 'react';
-import {
-	DragDropContext,
-	Draggable,
-	Droppable,
-	DroppableProvided,
-	DraggableLocation,
-	DropResult,
-	DroppableStateSnapshot, DraggableProvided, DraggableStateSnapshot
-} from 'react-beautiful-dnd';
+import { DragDropContext, DropResult, } from 'react-beautiful-dnd';
+import { dashboardColumnList } from '../state/dashboard.constants';
+import { IColumn } from '../features/column/state/column.models';
+import { ITask } from '../../task/state/task.models';
+import Column from '../features/column/container/column.container';
 
-interface IItem {
-	id: string;
-	content: string;
-}
-
+// TODO: 2) map redux state
 interface IAppState {
-	items: IItem[];
-	selected: IItem[];
+	columnList: IColumn[];
 }
 
-interface IMoveResult {
-	droppable: IItem[];
-	droppable2: IItem[];
-}
-
-const getItems = (count: number, offset: number = 0): IItem[] => {
-	return Array
-		.from({ length: count }, (v, k) => k)
-		.map(k => ({
-			content: `item ${k + offset}`,
-			id: `item-${k + offset}`
-		}));
-};
-
-const reorder = (list: IItem[], startIndex: number, endIndex: number): IItem[] => {
-	const result = [...list];
-	const [removed] = result.splice(startIndex, 1);
-	result.splice(endIndex, 0, removed);
-
-	return result;
-};
-
-
-/**
- * Moves an item from one list to another list.
- */
-const move = (
-	source: IItem[],
-	destination: IItem[],
-	droppableSource: DraggableLocation,
-	droppableDestination: DraggableLocation
-): IMoveResult | any => {
-	const sourceClone = [...source];
-	const destClone = [...destination];
-	const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-	destClone.splice(droppableDestination.index, 0, removed);
-
-	const result: any = {};
-	result[droppableSource.droppableId] = sourceClone;
-	result[droppableDestination.droppableId] = destClone;
-
-	return result;
-};
-
-const grid = 8;
-
-const getItemStyle = (draggableStyle: any, isDragging: boolean): {} => ({
-	userSelect: 'none',
-	padding: 2 * grid,
-	margin: `0 0 ${grid}px 0`,
-	background: isDragging ? 'lightgreen' : 'grey',
-	...draggableStyle
-});
-
-const getListStyle = (isDraggingOver: boolean): {} => ({
-	background: isDraggingOver ? 'lightblue' : 'lightgrey',
-	padding: grid,
-	width: 300,
-	minHeight: 400
-});
-
-export default class App extends React.Component<any, IAppState> {
-
-	public id2List = {
-		droppable: 'items',
-		droppable2: 'selected'
-	};
-
-	constructor(props: any) {
+class DashboardPage extends React.Component<unknown, IAppState> {
+	constructor(props: unknown) {
 		super(props);
-
+		// TODO: 2) map redux state
 		this.state = {
-			items: getItems(10, 0),
-			selected: getItems(5, 10)
+			columnList: dashboardColumnList,
 		};
-
 		this.onDragEnd = this.onDragEnd.bind(this);
-		this.getList = this.getList.bind(this);
 	}
 
-	public getList(id: string): IItem[] {
-		// @ts-ignore
-		return this.state[this.id2List[id]];
-	}
-
-	public onDragEnd(result: DropResult): void {
-
-		const { source, destination } = result;
-
+	onDragEnd(result: DropResult): void {
+		console.log('r', result);
+		const { source, destination, draggableId } = result;
 		if (!destination) {
 			return;
 		}
+		const sameSource = source.droppableId === destination.droppableId;
+		if (sameSource) {
+			// TODO: 3) add actions to implement these interactions
+			// --call action reorder on redux
+			// get appropriate column
+			// get it's task list
+			// reorder task list using: task list, source.index, destination.index
+			// assign new task list to column
+			// assign new column data to state with setState method
 
-		if (source.droppableId === destination.droppableId) {
-			const items = reorder(
-				this.getList(source.droppableId),
-				source.index,
-				destination.index
-			);
-
-			let state: IAppState = { ...this.state };
-
-			if (source.droppableId === 'droppable2') {
-				state = { ...this.state, selected: items };
-			} else if (source.droppableId === 'droppable') {
-				state = { ...this.state, items };
-			}
-
-			this.setState(state);
-
+			// const reorder = (list: IItem[], startIndex: number, endIndex: number): IItem[] => {
+			// 	const result = [...list];
+			// 	const [removed] = result.splice(startIndex, 1);
+			// 	result.splice(endIndex, 0, removed);
+			//
+			// 	return result;
+			// };
 		} else {
-			const resultFromMove: IMoveResult = move(
-				this.getList(source.droppableId),
-				this.getList(destination.droppableId),
-				source,
-				destination
-			);
+			// TODO: 3) add actions to implement these interactions
+			// --call action move on redux
+			// get source column
 
-			this.setState({
-				items: resultFromMove.droppable,
-				selected: resultFromMove.droppable2
-			});
+			// get target task using draggableId
+
+			// get source task list
+			// remove target task from source task list using source.index
+			// assign update task list to source column
+
+			// get target column
+			// get target task list
+			// add task to target list using destination.index
+			// assign update task list to target column
+
+			// assign updated source/target columns to state with setState method
+
+			// const move = (
+			// 	source: IItem[],
+			// 	destination: IItem[],
+			// 	droppableSource: DraggableLocation,
+			// 	droppableDestination: DraggableLocation
+			// ): IMoveResult | any => {
+			// 	const sourceClone = [...source];
+			// 	const destClone = [...destination];
+			// 	const [removed] = sourceClone.splice(droppableSource.index, 1);
+			//
+			// 	destClone.splice(droppableDestination.index, 0, removed);
+			//
+			// 	const result: any = {};
+			// 	result[droppableSource.droppableId] = sourceClone;
+			// 	result[droppableDestination.droppableId] = destClone;
+			//
+			// 	return result;
+			// };
 		}
 	}
 
 	public render() {
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
-				<div>
-					<div>
-						<div>
-							<Droppable droppableId='droppable'>
-								{(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
-									<div
-										ref={provided.innerRef}
-										{...provided.droppableProps}
-										style={getListStyle(snapshot.isDraggingOver)}
-									>
-										{this.state.items.map((item, index) => (
-											<Draggable key={item.id} draggableId={item.id} index={index}>
-												{(providedDraggable: DraggableProvided, snapshotDraggable: DraggableStateSnapshot) => (
-													<div>
-														<div
-															ref={providedDraggable.innerRef}
-															{...providedDraggable.draggableProps}
-															{...providedDraggable.dragHandleProps}
-															style={getItemStyle(
-																providedDraggable.draggableProps.style,
-																snapshotDraggable.isDragging
-															)}
-														>
-															{item.content}
-														</div>
-													</div>
-												)}
-											</Draggable>
-										))}
-										{provided.placeholder}
-									</div>
-								)}
-							</Droppable>
-						</div>
+				<div
+					className={'hwk-grid-container hwk-grid-container--horizontal-spaces-primary hwk-grid-container--negative-horizontal-spaces-primary'}>
+					<div className={'hwk-grid-row'}>
+						{this.state.columnList.map((column, index) => (
+							<div
+								className={'hwk-grid-col hwk-grid-col--6'}
+								key={index}>
+								<Column
+									id={column.id}
+									title={column.title}
+									taskList={column.taskList}></Column>
+							</div>
+						))}
 					</div>
 				</div>
 			</DragDropContext>
 		);
 	}
 }
+
+export default DashboardPage;
