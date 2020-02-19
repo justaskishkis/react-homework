@@ -31,7 +31,7 @@ export interface ITask1ValidationRules {
 	isRequired: boolean;
 }
 
-interface ITask1Props {
+export interface ITask1Props {
 	personLoading?: ILoading;
 	personError?: IApiError;
 	personData?: IPersonResponse;
@@ -43,8 +43,8 @@ interface ITask1Props {
 	exposureData?: IExposureResponse;
 }
 
-interface IPropsFromPerson {
+export interface IPersonActions {
 	getPerson: typeof getPerson;
 }
 
-export type IAllTask1Props = ITask1Props & IPropsFromPerson & RouteComponentProps;
+export type IAllTask1Props = ITask1Props & IPersonActions & RouteComponentProps;

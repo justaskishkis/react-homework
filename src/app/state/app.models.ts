@@ -5,6 +5,7 @@ import { IPersonState } from '../routing/task-1/features/person/state/person.mod
 import { IFacilityState } from '../routing/task-1/features/facility/state/facility.models';
 import { IExposureState } from '../routing/task-1/features/exposure/state/exposure.models';
 import { ITasksState } from '../routing/task-2/routing/task/state/task.models';
+import { IDashboardState } from '../routing/task-2/routing/dashboard/state/dashboard.models';
 
 export interface IAppState {
 	person: IPersonState;
@@ -12,6 +13,7 @@ export interface IAppState {
 	exposure: IExposureState;
 	router: RouterState;
 	tasks: ITasksState;
+	dashboard: IDashboardState;
 }
 
 export interface IApp {
