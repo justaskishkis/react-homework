@@ -5,7 +5,7 @@ import { IColumn } from '../features/column/state/column.models';
 import { ITask } from '../../task/state/task.models';
 import Column from '../features/column/container/column.container';
 
-// TODO: 2) map redux state
+// TODO: 2) map redux state to props
 interface IAppState {
 	columnList: IColumn[];
 }
@@ -13,7 +13,7 @@ interface IAppState {
 class DashboardPage extends React.Component<unknown, IAppState> {
 	constructor(props: unknown) {
 		super(props);
-		// TODO: 2) map redux state
+		// TODO: 2) map redux state to props
 		this.state = {
 			columnList: dashboardColumnList,
 		};

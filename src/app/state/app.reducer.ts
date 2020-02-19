@@ -8,17 +8,19 @@ import { facilityReducer } from '../routing/task-1/features/facility/state/facil
 import { exposureReducer } from '../routing/task-1/features/exposure/state/exposure.reducer';
 import facilitySaga from '../routing/task-1/features/facility/state/facility.sagas';
 import exposureSaga from '../routing/task-1/features/exposure/state/exposure.sagas';
+import { tasksReducer } from '../routing/task-2/routing/task/state/task.reducer';
 
 export const createRootReducer = (history: History) =>
 	combineReducers({
 		person: personReducer,
 		facility: facilityReducer,
 		exposure: exposureReducer,
+		tasks: tasksReducer,
 		router: connectRouter(history)
 	});
 
 export function* rootSaga() {
 	yield all([
-		fork(personSaga), fork(facilitySaga), fork(exposureSaga),
+		fork(personSaga), fork(facilitySaga), fork(exposureSaga)
 	]);
 }

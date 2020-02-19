@@ -4,12 +4,14 @@ import { History } from 'history';
 import { IPersonState } from '../routing/task-1/features/person/state/person.models';
 import { IFacilityState } from '../routing/task-1/features/facility/state/facility.models';
 import { IExposureState } from '../routing/task-1/features/exposure/state/exposure.models';
+import { ITasksState } from '../routing/task-2/routing/task/state/task.models';
 
 export interface IAppState {
 	person: IPersonState;
 	facility: IFacilityState;
 	exposure: IExposureState;
 	router: RouterState;
+	tasks: ITasksState;
 }
 
 export interface IApp {

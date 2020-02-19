@@ -1,6 +1,7 @@
-import { ITaskId } from '../../../../task/state/task.models';
+import { ITask, ITaskId } from '../../../../task/state/task.models';
 
-export interface IAllTaskProps {
+export interface IAllDashboardTaskProps {
 	taskId: ITaskId;
 	index: number;
+	data: ITask[];
 }

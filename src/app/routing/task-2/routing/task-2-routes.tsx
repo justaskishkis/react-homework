@@ -12,7 +12,6 @@ class Task2Routes extends React.Component {
 					<Redirect to={task2RoutesPaths.dashboard}/>
 				</Route>
 				<Route path={task2RoutesPaths.dashboard} component={DashboardPage}/>
-				<Route path={task2RoutesPaths.task} component={TaskPage}/>
 				<Route path={`${task2RoutesPaths.task}/:id`} component={TaskPage}/>
 				<Redirect to={task2RoutesPaths.dashboard}/>
 			</Switch>

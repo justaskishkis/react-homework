@@ -1,12 +1,12 @@
 import React from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
-import { IAllTaskProps } from '../state/task.models';
-import { ITask, ITaskId } from '../../../../task/state/task.models';
+import { IAllDashboardTaskProps } from '../state/task.models';
+import { IAppState } from '../../../../../../../state/app.models';
+import { connect } from 'react-redux';
 
-// TODO: 1) map task list to this component and use task list data to return proper task
-class Task extends React.Component<IAllTaskProps> {
+class Task extends React.Component<IAllDashboardTaskProps> {
 	render() {
-		const task = this.getTask(this.props.taskId);
+		const task = this.props.data.filter(item => item.id === this.props.taskId)[0];
 
 		return (
 			<Draggable
@@ -15,12 +15,12 @@ class Task extends React.Component<IAllTaskProps> {
 				index={this.props.index}>
 				{(providedDraggable: DraggableProvided, snapshotDraggable: DraggableStateSnapshot) => (
 					<div
-						className={'hwk-task ' + this.getTaskClass(snapshotDraggable.isDragging)}
+						className={'hwk-dashboard-task ' + this.getTaskClass(snapshotDraggable.isDragging)}
 						ref={providedDraggable.innerRef}
 						{...providedDraggable.draggableProps}
 						{...providedDraggable.dragHandleProps}
 					>
-						<div className={'hwk-task__heading'}>
+						<div className={'hwk-dashboard-task__heading'}>
 							{task.title}
 						</div>
 					</div>
@@ -29,18 +29,14 @@ class Task extends React.Component<IAllTaskProps> {
 		);
 	}
 
-	private getTask(taskId: ITaskId): ITask {
-		return {
-			id: taskId,
-			title: taskId,
-			description: taskId,
-		};
-	}
-
 	private getTaskClass(isDragging: boolean): string {
 		const className = isDragging ? 'hwk-task--dragging' : '';
 		return className;
 	}
 }
 
-export default Task;
+const mapStateToProps = ({ tasks}: IAppState) => ({
+	data: tasks.data,
+});
+
+export default connect(mapStateToProps)(Task);
