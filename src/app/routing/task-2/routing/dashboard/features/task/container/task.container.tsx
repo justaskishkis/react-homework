@@ -3,6 +3,8 @@ import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beau
 import { IAllDashboardTaskProps } from '../state/task.models';
 import { IAppState } from '../../../../../../../state/app.models';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { appRoutesPaths } from '../../../../../../app-routes.constants';
 
 class Task extends React.Component<IAllDashboardTaskProps> {
 	render() {
@@ -21,7 +23,12 @@ class Task extends React.Component<IAllDashboardTaskProps> {
 						{...providedDraggable.dragHandleProps}
 					>
 						<div className={'hwk-dashboard-task__heading'}>
-							{task.title}
+							<NavLink
+								exact
+								to={`${appRoutesPaths.task2}/task/${this.props.taskId}`}
+							>
+								{task ? task.title : 'No task id found'}
+							</NavLink>
 						</div>
 					</div>
 				)}

@@ -7,7 +7,7 @@ const reducer: Reducer<IDashboardState> = (state = initialDashboardState, action
 	switch (action.type) {
 		case IDashboardActionTypes.UPDATE: {
 			return {
-				data: update(state.data, action.payload),
+				data: update(state.data, action.payload)
 			};
 		}
 
@@ -20,60 +20,35 @@ const reducer: Reducer<IDashboardState> = (state = initialDashboardState, action
 export { reducer as dashboardReducer };
 
 function update(data: IColumn[], request: IUpdateDashboardRequest): IColumn[] {
-	console.log('reducer', request);
-	// if (sameSource) {
-	// TODO: 3) add actions to implement these interactions
-	// --call action reorder on redux
-	// get appropriate column
-	// get it's task list
-	// reorder task list using: task list, source.index, destination.index
-	// assign new task list to column
-	// assign new column data to state with setState method
+	const result = [...data];
+	const sameSource = request.sourceColumnId === request.destinationColumnId;
+	const sourceColumn = data.filter(item => item.id === request.sourceColumnId)[0];
+	const sourceColumnIndex = data.indexOf(sourceColumn);
+	const destinationColumn = data.filter(item => item.id === request.destinationColumnId)[0];
+	const destinationColumnIndex = data.indexOf(destinationColumn);
+	if (sameSource) {
+		// UPDATE source column
+		const taskList = [...sourceColumn.taskList];
+		const [removedTask] = taskList.splice(request.sourceIndex, 1);
+		taskList.splice(request.destinationIndex, 0, removedTask);
+		const [removedColumn] = result.splice(sourceColumnIndex, 1);
+		removedColumn.taskList = taskList;
+		result.splice(sourceColumnIndex, 0, removedColumn);
+	} else {
+		// UPDATE source column
+		const sourceTaskList = [...sourceColumn.taskList];
+		const [removedTask] = sourceTaskList.splice(request.sourceIndex, 1);
+		const [removedSourceColumn] = result.splice(sourceColumnIndex, 1);
+		removedSourceColumn.taskList = sourceTaskList;
+		result.splice(sourceColumnIndex, 0, removedSourceColumn);
 
-	// const reorder = (list: IItem[], startIndex: number, endIndex: number): IItem[] => {
-	// 	const result = [...list];
-	// 	const [removed] = result.splice(startIndex, 1);
-	// 	result.splice(endIndex, 0, removed);
-	//
-	// 	return result;
-	// };
-	// } else {
-	// TODO: 3) add actions to implement these interactions
-	// --call action move on redux
-	// get source column
-
-	// get target task using draggableId
-
-	// get source task list
-	// remove target task from source task list using source.index
-	// assign update task list to source column
-
-	// get target column
-	// get target task list
-	// add task to target list using destination.index
-	// assign update task list to target column
-
-	// assign updated source/target columns to state with setState method
-
-	// const move = (
-	// 	source: IItem[],
-	// 	destination: IItem[],
-	// 	droppableSource: DraggableLocation,
-	// 	droppableDestination: DraggableLocation
-	// ): IMoveResult | any => {
-	// 	const sourceClone = [...source];
-	// 	const destClone = [...destination];
-	// 	const [removed] = sourceClone.splice(droppableSource.index, 1);
-	//
-	// 	destClone.splice(droppableDestination.index, 0, removed);
-	//
-	// 	const result: any = {};
-	// 	result[droppableSource.droppableId] = sourceClone;
-	// 	result[droppableDestination.droppableId] = destClone;
-	//
-	// 	return result;
-	// };
-	// }
-	return data;
+		// UPDATE destination column
+		const destinationTaskList = [...destinationColumn.taskList];
+		destinationTaskList.splice(request.destinationIndex, 0, removedTask);
+		const [removedDestinationColumn] = result.splice(destinationColumnIndex, 1);
+		removedDestinationColumn.taskList = destinationTaskList;
+		result.splice(destinationColumnIndex, 0, removedDestinationColumn);
+	}
+	return result;
 }
 

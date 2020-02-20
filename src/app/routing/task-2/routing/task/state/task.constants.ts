@@ -12,6 +12,11 @@ export const initialTasksState: ITasksState = {
 			title: 'Task 2 title',
 			description: 'Task 2 description',
 		},
+		{
+			id: 'task-3',
+			title: 'Task 3 title',
+			description: 'Task 3 description',
+		},
 	]
 };
 

@@ -5,7 +5,7 @@ export const initialDashboardState: IDashboardState = {
 		{
 			id: 'column-1',
 			title: 'Column 1 title',
-			taskList: ['task-1']
+			taskList: ['task-1', 'task-3']
 		},
 		{
 			id: 'column-2',
